@@ -1,0 +1,1 @@
+[{"model": "diary.diaryentry", "pk": 1, "fields": {"name": "Поход в театр", "description": "Сегодня посетили театр....", "created_at": "2024-09-15", "updated_ad": "2024-09-15"}}]

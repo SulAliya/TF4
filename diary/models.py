@@ -15,6 +15,6 @@ class DiaryEntry(models.Model):
         return f'{self.name} \n {self.description} \n {self.created_at}'
 
     class Meta:
-        verbose_name = 'клиент'
-        verbose_name_plural = 'клиенты'
+        verbose_name = 'Запись в дневнике'
+        verbose_name_plural = 'Записи в дневнике'
 
