@@ -1,0 +1,20 @@
+{% extends 'diary/home.html' %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-2">
+                <div class="card">
+                    <div class="card-body">
+                        <form method='post'>
+                            {% csrf_token %}
+                            <p>Хотите удалить "{{object.name}}"?</p>
+                            <button type="submit" class="btn btn-outline-danger btn-lg">Подтвердить</button>
+                            <a class="btn btn-outline-primary btn-lg" href="{% url 'diary:diaryentry_list'%}" role="button">Назад</a>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
