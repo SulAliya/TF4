@@ -1,0 +1,27 @@
+{% extends 'diary/home.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <h3 class="mb-0">{{ object.name }}</h3>
+                <h3 class="mb-0">{{ object.date_of_event }}</h3>
+                <div class="mb-1 text-body-secondary">Запись от: {{ object.created_at}}</div>
+                <p class="card-text mb-auto">{{ object.description }}</p>
+                </a>
+            </div>
+
+            <img src="{{ object.image | media_filter }}">
+
+        </div>
+        <ul class="footer__list footer__list--dropdown">
+            <li class="footer__item j-wba-footer-item" data-wba-footer-name="About_us"><a rel="nofollow" href="{% url 'diary:diaryentry_list' %}">На главную</a>
+            </li>
+            <li class="footer__item j-wba-footer-item" data-wba-footer-name="About_us"><a rel="nofollow" href="{% url 'diary:diaryentry_update' object.pk %}">Редактировать</a>
+            </li>
+            <li class="footer__item j-wba-footer-item" data-wba-footer-name="About_us"><a rel="nofollow" href="{% url 'diary:diaryentry_delete' object.pk %}">Удалить</a>
+            </li>
+        </ul>
+    </div>
+    {% endblock %}

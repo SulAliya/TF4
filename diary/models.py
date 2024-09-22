@@ -7,6 +7,8 @@ NULLABLE = {'blank': True, 'null': True}
 class DiaryEntry(models.Model):
     name = models.CharField(max_length=100, verbose_name="Наименование")
     description = models.TextField(verbose_name='Описание', **NULLABLE)
+    image = models.ImageField(upload_to='diary/', verbose_name='Изображение', **NULLABLE)
+    date_of_event = models.DateField(**NULLABLE, verbose_name='Дата события')
     created_at = models.DateField(**NULLABLE, verbose_name='Дата создания (записи в БД)')
     updated_ad = models.DateField(**NULLABLE, verbose_name='Дата последнего изменения (записи в БД)')
     # owner = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name='Пользователь', **NULLABLE)
