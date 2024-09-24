@@ -16,4 +16,4 @@ class StyleFormMixin:
 class DiaryForm(ModelForm):
     class Meta:
         model = DiaryEntry
-        fields = ('name', 'description', 'date_of_event')
+        fields = ('name', 'description', 'date_of_event', 'image')

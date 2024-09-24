@@ -11,7 +11,7 @@ class DiaryEntry(models.Model):
     date_of_event = models.DateField(**NULLABLE, verbose_name='Дата события')
     created_at = models.DateField(**NULLABLE, verbose_name='Дата создания (записи в БД)')
     updated_ad = models.DateField(**NULLABLE, verbose_name='Дата последнего изменения (записи в БД)')
-    # owner = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name='Пользователь', **NULLABLE)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name='Пользователь', **NULLABLE)
 
     def __str__(self):
         return f'{self.name} \n {self.description} \n {self.created_at}'

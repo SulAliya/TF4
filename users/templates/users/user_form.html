@@ -4,14 +4,19 @@
     <form class="row" method='post' enctype="multipart/form-data">
         <div class="col-6">
             <div class="card">
+                <h3 class="card-title">
+                    Регистрация
+                </h3>
                 <div class="card-body">
                     {% csrf_token %}
                     {{ form.as_p }}
-                      </div>
-                    <button type="submit" class="btn btn-primary">Войти</button>
-
                 </div>
+                <button type="submit" class="btn btn-primary">
+                    Зарегистрироваться
+                </button>
             </div>
-</form>
+            <div class="card-footer"></div>
+        </div>
+    </form>
 </div>
 {% endblock %}
