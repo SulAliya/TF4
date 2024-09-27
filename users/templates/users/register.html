@@ -4,15 +4,18 @@
     <form class="row" method='post' enctype="multipart/form-data">
         <div class="col-6">
             <div class="card">
+                <h3 class="card-title">
+                    Регистрация
+                </h3>
                 <div class="card-body">
                     {% csrf_token %}
                     {{ form.as_p }}
                 </div>
-                <button type="submit" class="btn btn-primary">Войти</button>
-                <a href="{% url 'users:reset_password' %}" type="submit" class="btn btn-warning">
-                    Восстановить пароль
-                </a>
+                <button type="submit" class="btn btn-primary">
+                    Зарегистрироваться
+                </button>
             </div>
+            <div class="card-footer"></div>
         </div>
     </form>
 </div>

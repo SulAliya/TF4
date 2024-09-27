@@ -6,8 +6,16 @@
         <h1 class="display-4 fst-italic">Дорогой дневник</h1>
         <p class="lead my-3">Я храню все важные события</p>
         {% if user.is_authenticated %}
-        <p class="lead mb-0"><a href="{% url 'diary:diaryentry_create' %}" class="text-body-emphasis fw-bold">Создать
-            новую запись</a></p>
+
+        <a href="{% url 'diary:diaryentry_create' %}" class="text-decoration-none">
+            Создать новую запись
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle"
+                 viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+        </a>
+
         {% endif %}
     </div>
 </div>
@@ -31,48 +39,27 @@
         {% endfor %}
     </div>
 </div>
-<div>
-    <h4 class="fst-italic">Recent posts</h4>
-    <ul class="list-unstyled">
-        <li>
-            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-               href="#">
-                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777"/>
-                </svg>
-                <div class="col-lg-8">
-                    <h6 class="mb-0">Example blog post title</h6>
-                    <small class="text-body-secondary">January 15, 2024</small>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-               href="#">
-                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777"/>
-                </svg>
-                <div class="col-lg-8">
-                    <h6 class="mb-0">This is another blog post title</h6>
-                    <small class="text-body-secondary">January 14, 2024</small>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
-               href="#">
-                <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg"
-                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#777"/>
-                </svg>
-                <div class="col-lg-8">
-                    <h6 class="mb-0">Longer blog post title: This one has multiple lines!</h6>
-                    <small class="text-body-secondary">January 13, 2024</small>
-                </div>
-            </a>
-        </li>
-    </ul>
+
+{% for contact in page_obj %}
+{# Each "contact" is a Contact model object. #}
+{{ contact.full_name|upper }}<br>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Первая страница</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя страница &raquo;</a>
+        {% endif %}
+    </span>
 </div>
 {% endblock %}

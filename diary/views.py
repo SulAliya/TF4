@@ -1,14 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
+from diary import forms
 from diary.forms import DiaryForm
 from diary.models import DiaryEntry
 
 
 class DiaryListView(ListView):
     model = DiaryEntry
+    paginate_by = 2
 
 
 class DiaryDetailView(DetailView):
@@ -37,3 +39,21 @@ class DiaryUpdateView(UpdateView):
 class DiaryDeleteView(DeleteView):
     model = DiaryEntry
     success_url = reverse_lazy('diary:diaryentry_list')
+
+
+class HomePageView(TemplateView):
+    template_name = 'diary/home.html'
+
+
+class SearchPageView(ListView):
+    model = DiaryEntry
+    template_name = 'diary/search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = DiaryEntry.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+        return object_list
+
+
