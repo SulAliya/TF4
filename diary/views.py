@@ -1,16 +1,20 @@
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
-from diary import forms
 from diary.forms import DiaryForm
 from diary.models import DiaryEntry
+from diary.services import get_from_cache
 
 
 class DiaryListView(ListView):
     model = DiaryEntry
-    paginate_by = 2
+    paginate_by = 3
+
+    def get_queryset(self):
+        return get_from_cache()
 
 
 class DiaryDetailView(DetailView):
