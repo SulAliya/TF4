@@ -20,3 +20,14 @@ class DiaryEntry(models.Model):
     class Meta:
         verbose_name = 'Запись в дневнике'
         verbose_name_plural = 'Записи в дневнике'
+        ordering = (
+            'name',
+            'date_of_event',
+        )
+
+        permissions = [
+            ('can_edit_name', 'Can edit name'),
+            ('can_edit_description', 'Can edit description'),
+            ('can_edit_date_of_view', 'Can edit date of view'),
+            ('can_edit_image', 'Can edit image'),
+        ]
