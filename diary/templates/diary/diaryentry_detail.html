@@ -1,6 +1,7 @@
 {% extends 'diary/home.html' %}
 {% load my_tags %}
 {% block content %}
+
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -25,10 +26,8 @@
                     </svg>
                 </a>
             </p>
-
-
-            {% if user == object.owner %}
             <p>
+                {% if user == object.owner %}
                 <a href="{% url 'diary:diaryentry_update' object.pk %}" class="text-decoration-none">
                     Редактировать
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -53,5 +52,6 @@
         </ul>
     </div>
 </div>
+
 {% endblock %}
 

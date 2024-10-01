@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
 
     'diary',
     'users',
@@ -121,6 +122,7 @@ AUTH_USER_MODEL = "users.User"
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = 'users:login'
 
 
 EMAIL_HOST = os.getenv('EMAIL_HOST')
@@ -142,3 +144,7 @@ if CACHE_ENABLED:
             'LOCATION': os.getenv('LOCATION')
         }
     }
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

@@ -3,10 +3,7 @@
 {% block content %}
 <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
     <div class="col-lg-6 px-0">
-        <h1 class="display-4 fst-italic">Дорогой дневник</h1>
-        <p class="lead my-3">Я храню все важные события</p>
         {% if user.is_authenticated %}
-
         <a href="{% url 'diary:diaryentry_create' %}" class="text-decoration-none">
             Создать новую запись
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle"
@@ -15,10 +12,10 @@
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
             </svg>
         </a>
-
         {% endif %}
     </div>
 </div>
+
 <div class="row mb-2">
     {% for diar in object_list %}
     <div class="col-md-4">
@@ -37,7 +34,7 @@
             <img class="rounded-5" src="{{ diar.image | media_filter }}" alt="">
         </div>
     </div>
-        {% endfor %}
+    {% endfor %}
 </div>
 
 {% for contact in page_obj %}

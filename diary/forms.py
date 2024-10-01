@@ -17,3 +17,9 @@ class DiaryForm(ModelForm):
     class Meta:
         model = DiaryEntry
         fields = ('name', 'description', 'date_of_event', 'image')
+
+
+class DiaryModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = DiaryEntry
+        fields = ('name', 'description', 'date_of_event', 'image')
