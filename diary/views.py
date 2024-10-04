@@ -29,6 +29,9 @@ class DiaryCreateView(LoginRequiredMixin, CreateView):
     form_class = DiaryForm
     success_url = reverse_lazy('diary:diaryentry_list')
 
+    def __init__(self):
+        self.object = None
+
     def form_valid(self, form):
         self.object = form.save()
         self.object.owner = self.request.user

@@ -12,7 +12,6 @@ from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User
 
 
-# Create your views here.
 class UserCreateView(CreateView):
     model = User
     form_class = UserRegisterForm
@@ -35,7 +34,7 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
 
-def email_verification(request, token):
+def email_verification(token):
     user = get_object_or_404(User, token=token)
     user.is_active = True
     user.save()
@@ -47,7 +46,7 @@ class ProfileView(UpdateView):
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
 
-    def get_object(self, queryset=None):
+    def get_object(self):
         return self.request.user
 
 
