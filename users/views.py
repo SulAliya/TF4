@@ -34,7 +34,7 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
 
-def email_verification(token):
+def email_verification(request, token):
     user = get_object_or_404(User, token=token)
     user.is_active = True
     user.save()
@@ -46,7 +46,7 @@ class ProfileView(UpdateView):
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         return self.request.user
 
 

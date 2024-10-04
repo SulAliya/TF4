@@ -78,7 +78,7 @@ class SearchPageView(ListView):
 
 class IsOwnerFilterBackend(filters.BaseFilterBackend):
     """
-    Filter that only allows users to see their own objects.
+    Фильтр, который позволяет пользователям видеть только свои собственные объекты..
     """
 
     def filter_queryset(self, request, queryset, view):
